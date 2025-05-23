@@ -1,17 +1,28 @@
 
 const canvas = document.getElementById('starfield');
 const ctx = canvas.getContext('2d');
-let stars = [], w, h, burst = false, burstStart, burstTarget = "";
+let w, h, stars = [], objects = [], burst = false, burstStart, burstTarget = "";
 let angle = 0;
 
 function resize() {
   w = canvas.width = window.innerWidth;
   h = canvas.height = window.innerHeight;
-  stars = Array.from({length: 350}, () => ({
+
+  stars = Array.from({length: 300}, () => ({
     x: Math.random() * w - w/2,
     y: Math.random() * h - h/2,
     z: Math.random() * w,
     speed: 2
+  }));
+
+  objects = Array.from({length: 50}, () => ({
+    x: Math.random() * w - w/2,
+    y: Math.random() * h - h/2,
+    z: Math.random() * w,
+    size: Math.random() * 10 + 8,
+    type: Math.random() > 0.5 ? 'planet' : 'asteroid',
+    color: Math.random() > 0.5 ? '#44ccff' : '#ccc',
+    speed: Math.random() * 2 + 1
   }));
 }
 
@@ -29,11 +40,12 @@ function draw() {
   ctx.fillStyle = 'black';
   ctx.fillRect(0, 0, w, h);
 
+  // Stars
   ctx.fillStyle = 'white';
   stars.forEach(star => {
     star.z -= star.speed;
-    if (burst) star.speed += 0.5;
-    if (star.z <= 0 || star.speed > 100) {
+    if (burst) star.speed += 0.3;
+    if (star.z <= 0 || star.speed > 80) {
       star.x = Math.random() * w - w/2;
       star.y = Math.random() * h - h/2;
       star.z = w;
@@ -42,13 +54,36 @@ function draw() {
     const k = 128.0 / star.z;
     const x = star.x * k + w/2;
     const y = star.y * k + h/2;
-    if (x >= 0 && x < w && y >= 0 && y < h) {
-      ctx.beginPath();
-      ctx.arc(x, y, 1.4, 0, 2 * Math.PI);
-      ctx.fill();
-    }
+    ctx.beginPath();
+    ctx.arc(x, y, 1.4, 0, 2 * Math.PI);
+    ctx.fill();
   });
 
+  // Flyby Objects
+  objects.forEach(obj => {
+    obj.z -= obj.speed;
+    if (burst) obj.speed += 0.4;
+    if (obj.z <= 0) {
+      obj.x = Math.random() * w - w/2;
+      obj.y = Math.random() * h - h/2;
+      obj.z = w;
+      obj.speed = Math.random() * 2 + 1;
+    }
+
+    const k = 128.0 / obj.z;
+    const x = obj.x * k + w/2;
+    const y = obj.y * k + h/2;
+    const size = obj.size * k * 0.2;
+
+    ctx.beginPath();
+    ctx.fillStyle = obj.color;
+    ctx.globalAlpha = obj.type === 'planet' ? 0.7 : 0.4;
+    ctx.arc(x, y, size, 0, 2 * Math.PI);
+    ctx.fill();
+    ctx.globalAlpha = 1;
+  });
+
+  // Transition complete
   if (burst && Date.now() - burstStart > 2500) {
     burst = false;
     window.location.href = burstTarget;
