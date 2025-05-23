@@ -9,6 +9,7 @@ body, html {
   font-family: 'Segoe UI', sans-serif;
   background: black;
   overflow: hidden;
+  color: white;
 }
 .intro {
   position: absolute;
@@ -23,21 +24,16 @@ body, html {
 }
 .intro h1 {
   font-size: 3em;
-  color: white;
-  margin-bottom: 20px;
-  text-shadow: 0 0 15px black;
+  text-shadow: 0 0 20px black;
 }
 .intro button {
   padding: 15px 30px;
   font-size: 1.2em;
-  background: #1e90ff;
+  background-color: #1e90ff;
   color: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-}
-.intro button:hover {
-  background: #63b3ed;
 }
 .universe {
   display: none;
@@ -49,7 +45,6 @@ body, html {
 .planet {
   position: absolute;
   font-size: 2em;
-  color: white;
   cursor: pointer;
   text-align: center;
   animation: pulse 4s infinite;
@@ -59,21 +54,17 @@ body, html {
   font-size: 0.75em;
   margin-top: 10px;
 }
-#planet-read { top: 20%; left: 30%; }
-#planet-lore { top: 50%; left: 70%; }
-#planet-support { top: 80%; left: 45%; }
 @keyframes pulse {
   0%, 100% { transform: scale(1); opacity: 0.8; }
   50% { transform: scale(1.2); opacity: 1; }
 }
 .warp {
-  display: none;
   position: fixed;
+  top: 0; left: 0;
   width: 100vw;
   height: 100vh;
-  background: radial-gradient(ellipse at center, rgba(255,255,255,0.6) 0%, transparent 70%);
-  animation: zoom 2s forwards;
-  z-index: 3;
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.5) 0%, transparent 80%);
+  animation: zoom 1s forwards;
 }
 @keyframes zoom {
   0% { transform: scale(1); opacity: 1; }

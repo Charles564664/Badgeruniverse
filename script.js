@@ -1,14 +1,9 @@
 
-function startPortal() {
+function startUniverse() {
   document.getElementById('intro').style.display = 'none';
   document.getElementById('universe').style.display = 'block';
 }
-
-function flyTo(section) {
-  const warp = document.getElementById('warp');
-  warp.style.display = 'block';
-  setTimeout(() => {
-    alert('Navigating to: ' + section);
-    warp.style.display = 'none';
-  }, 2000);
+function navigateTo(page) {
+  document.body.innerHTML = '<div class="warp"></div>';
+  setTimeout(() => { window.location.href = page; }, 1200);
 }
