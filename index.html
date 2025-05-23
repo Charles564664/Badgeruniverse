@@ -8,23 +8,19 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <section class="hero">
-    <div class="content">
+  <div class="overlay" id="overlay">
+    <div class="intro">
       <h1>🌌 Enter the Badger Universe</h1>
-      <p>Scroll through the galaxy to explore</p>
+      <button onclick="enterUniverse()">ENTER</button>
     </div>
-  </section>
-  <section class="section">
-    <h2>🌠 Read the Saga</h2>
-    <a class="btn" href="#">Launch Chapters</a>
-  </section>
-  <section class="section">
-    <h2>🧬 Explore the Lore</h2>
-    <a class="btn" href="#">Discover the World</a>
-  </section>
-  <section class="section">
-    <h2>💰 Support the Universe</h2>
-    <a class="btn" href="#">Join the Mission</a>
-  </section>
+  </div>
+  <div class="universe" id="universe">
+    <div class="menu">
+      <a href="#" class="menu-item">🌠 Read</a>
+      <a href="#" class="menu-item">🧬 Lore</a>
+      <a href="#" class="menu-item">💰 Support</a>
+    </div>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
