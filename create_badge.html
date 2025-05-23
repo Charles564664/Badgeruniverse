@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create Your Badge</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <h1>🔧 Create Your .badge File</h1>
+  <label>Name: <input type="text" id="name"></label><br><br>
+  <label>Rank: <input type="text" id="rank"></label><br><br>
+  <label>Origin: <input type="text" id="origin"></label><br><br>
+  <label>Symbol: <input type="text" id="symbol" placeholder="🌀"></label><br><br>
+  <label>Last Seen: <input type="text" id="lastSeen"></label><br><br>
+  <button onclick="createBadge()">Download .badge</button>
+
+  <script>
+    function createBadge() {
+      const badge = {
+        name: document.getElementById('name').value,
+        rank: document.getElementById('rank').value,
+        origin: document.getElementById('origin').value,
+        symbol: document.getElementById('symbol').value,
+        lastSeen: document.getElementById('lastSeen').value
+      };
+      const blob = new Blob([JSON.stringify(badge, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = badge.name.replace(/\s+/g, '_') + '.badge';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+  </script>
+</body>
+</html>
