@@ -4,6 +4,9 @@ function startUniverse() {
   document.getElementById('universe').style.display = 'block';
 }
 function navigateTo(page) {
-  document.body.innerHTML = '<div class="warp"></div>';
-  setTimeout(() => { window.location.href = page; }, 1200);
+  const warp = document.getElementById('warp');
+  warp.style.display = 'block';
+  setTimeout(() => {
+    window.location.href = page;
+  }, 1800);
 }
