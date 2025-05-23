@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Badge Loader</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+  <h1>🧠 Load a .badge file</h1>
+  <input type="file" id="fileInput" />
+  <pre id="output"></pre>
+
+  <script>
+    document.getElementById('fileInput').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file && file.name.endsWith('.badge')) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          try {
+            const content = JSON.parse(e.target.result);
+            document.getElementById('output').textContent = JSON.stringify(content, null, 2);
+          } catch (err) {
+            document.getElementById('output').textContent = "Invalid .badge format.";
+          }
+        };
+        reader.readAsText(file);
+      } else {
+        document.getElementById('output').textContent = "Please upload a .badge file.";
+      }
+    });
+  </script>
+</body>
+</html>
