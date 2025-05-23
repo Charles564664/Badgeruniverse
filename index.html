@@ -4,23 +4,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Badger Universe</title>
+  <title>Badger Universe Portal</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="overlay" id="overlay">
-    <div class="intro">
-      <h1>🌌 Enter the Badger Universe</h1>
-      <button onclick="enterUniverse()">ENTER</button>
-    </div>
+  <div class="intro" id="intro">
+    <h1>🌌 Enter the Badger Universe</h1>
+    <button onclick="startPortal()">ENTER</button>
   </div>
+
   <div class="universe" id="universe">
-    <div class="menu">
-      <a href="#" class="menu-item">🌠 Read</a>
-      <a href="#" class="menu-item">🧬 Lore</a>
-      <a href="#" class="menu-item">💰 Support</a>
-    </div>
+    <div class="planet" id="planet-read" onclick="flyTo('read')">🌠<span>Read</span></div>
+    <div class="planet" id="planet-lore" onclick="flyTo('lore')">🧬<span>Lore</span></div>
+    <div class="planet" id="planet-support" onclick="flyTo('support')">💰<span>Support</span></div>
   </div>
+
+  <div class="warp" id="warp"></div>
+
   <script src="script.js"></script>
 </body>
 </html>

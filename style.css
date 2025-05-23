@@ -5,68 +5,77 @@
   box-sizing: border-box;
 }
 body, html {
-  width: 100%;
   height: 100%;
   font-family: 'Segoe UI', sans-serif;
-  overflow: hidden;
   background: black;
+  overflow: hidden;
 }
-.overlay {
+.intro {
   position: absolute;
+  z-index: 2;
   width: 100%;
   height: 100%;
   background: url('galaxy.jpg') center center / cover no-repeat;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  transition: transform 3s ease-out, opacity 2s;
-  z-index: 2;
 }
 .intro h1 {
-  color: white;
   font-size: 3em;
+  color: white;
   margin-bottom: 20px;
-  text-shadow: 0 0 20px #000;
+  text-shadow: 0 0 15px black;
 }
 .intro button {
   padding: 15px 30px;
   font-size: 1.2em;
-  border: none;
-  background-color: #1e90ff;
+  background: #1e90ff;
   color: white;
-  border-radius: 10px;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
-  box-shadow: 0 0 10px #1e90ff;
 }
 .intro button:hover {
-  background-color: #63b3ed;
+  background: #63b3ed;
 }
 .universe {
   display: none;
   width: 100%;
   height: 100%;
   background: url('galaxy.jpg') center center / cover no-repeat;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
 }
-.menu {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-.menu-item {
-  padding: 20px 40px;
-  background-color: rgba(30,144,255,0.8);
+.planet {
+  position: absolute;
+  font-size: 2em;
   color: white;
-  font-size: 1.5em;
-  border-radius: 12px;
-  text-decoration: none;
+  cursor: pointer;
   text-align: center;
-  transition: transform 0.3s ease, background 0.3s ease;
+  animation: pulse 4s infinite;
 }
-.menu-item:hover {
-  transform: scale(1.1);
-  background-color: rgba(99,179,237,0.9);
+.planet span {
+  display: block;
+  font-size: 0.75em;
+  margin-top: 10px;
+}
+#planet-read { top: 20%; left: 30%; }
+#planet-lore { top: 50%; left: 70%; }
+#planet-support { top: 80%; left: 45%; }
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.2); opacity: 1; }
+}
+.warp {
+  display: none;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.6) 0%, transparent 70%);
+  animation: zoom 2s forwards;
+  z-index: 3;
+}
+@keyframes zoom {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(30); opacity: 0; }
 }

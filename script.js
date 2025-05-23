@@ -1,11 +1,14 @@
 
-function enterUniverse() {
-  const overlay = document.getElementById('overlay');
-  const universe = document.getElementById('universe');
-  overlay.style.transform = "scale(5)";
-  overlay.style.opacity = "0";
+function startPortal() {
+  document.getElementById('intro').style.display = 'none';
+  document.getElementById('universe').style.display = 'block';
+}
+
+function flyTo(section) {
+  const warp = document.getElementById('warp');
+  warp.style.display = 'block';
   setTimeout(() => {
-    overlay.style.display = "none";
-    universe.style.display = "flex";
+    alert('Navigating to: ' + section);
+    warp.style.display = 'none';
   }, 2000);
 }
